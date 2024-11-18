@@ -1,0 +1,5 @@
+redis:
+  host: "redis"      # Name of the Redis container
+  port: 6379         # Default Redis port
+  db: 0              # Redis database number
+  password: ""       # No password by default

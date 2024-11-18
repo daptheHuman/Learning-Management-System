@@ -1,6 +1,12 @@
 package route
 
 import (
+	assessController "github.com/dapthehuman/learning-management-system/http/controllers/assessment-controller"
+	authController "github.com/dapthehuman/learning-management-system/http/controllers/authentication-controller"
+	courseController "github.com/dapthehuman/learning-management-system/http/controllers/courses-controller"
+	materialController "github.com/dapthehuman/learning-management-system/http/controllers/material-controller"
+	studentController "github.com/dapthehuman/learning-management-system/http/controllers/students-controller"
+
 	"goyave.dev/goyave/v5"
 	"goyave.dev/goyave/v5/cors"
 	"goyave.dev/goyave/v5/middleware/parse"
@@ -19,4 +25,11 @@ func Register(server *goyave.Server, router *goyave.Router) {
 	router.GlobalMiddleware(&parse.Middleware{})
 
 	// TODO register routes
+	router.Controller(&authController.Controller{})
+	router.Controller(&courseController.Controller{})
+	router.Controller(&materialController.Controller{})
+
+	router.Controller(&studentController.Controller{})
+	router.Controller(&assessController.Controller{})
+	router.Controller(&authController.Controller{})
 }

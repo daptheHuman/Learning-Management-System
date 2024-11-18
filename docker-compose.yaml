@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server
+  
+  app:
+    build: .
+    volumes:
+      - ./:/app
+
+    environment:
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT}/${DB_NAME}?sslmode=disable
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_URL: ${REDIS_URL}
+
+      SEED_DB: ${SEED_DB}
+      APP_SECRET: ${APP_SECRET:-$(head -c 32 /dev/random | base64)}
+    depends_on:
+      - db
+      - redis
+    restart: always 
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata: 
+
+networks:
+    goyave-backend:
+        driver: bridge

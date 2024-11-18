@@ -1,18 +1,37 @@
-# Goyave Template
+## 📂 **Hierarchical Structure Overview**
+1. Course
+    - Contains multiple Curriculum sections.
+2. Curriculum
+    - Belongs to a Course.
+    - Contains multiple Materials.
+3. Material
+    - Belongs to a Curriculum.
+    - Represents different types of learning content (e.g., text, video, quiz)
 
-A template project to get started with the [Goyave](https://github.com/go-goyave/goyave) framework. This project only contains the directory structure and basic server setup so you shouldn't have to clean up things you don't need.
+## 🟢 **Summary of Implemented Features**
 
-- [Documentation](https://goyave.dev)
-- [go.pkg.dev](https://pkg.go.dev/goyave.dev/goyave/v5)
+### **Course Management**
+- ✅ Course creation and CRUD operations.
+- ✅ Curriculum structuring with CRUD operations.
+- ✅ Course enrollment and access control.
 
-## Getting Started
+### **Student Learning**
+- ✅ Basic progress tracking with routes in place.
+- ✅ User roles (student, instructor, admin) for access control.
+- 🔄 Partially implemented features like progress tracking with checkpoints and achievement systems.
 
-First, make your own configuration for your local environment. You can copy `config.example.json` to `config.json`.
+### **Assessment System**
+- 🔄 Partially handled multiple question types through the `type` field.
+- 🔄 Submission routes exist, but auto-grading and plagiarism detection are pending.
 
-Run `go run main.go` in your project's directory to start the server.
+### **Authentication & Authorization**
+- ✅ User registration and login with JWT tokens.
+- ✅ Role-Based Access Control (RBAC) implemented.
 
-## License
+### **Middleware & Utilities**
+- ✅ Authentication and role-based middleware.
+- ✅ Logging, database connection, and configuration management are set up.
 
-The Goyave framework is MIT Licensed. Copyright © 2024 Jérémy LAMBERT (SystemGlitch)
 
-The code in this template project is not licensed, use as you wish.
+- ✅ Cache management with Redis.
+---

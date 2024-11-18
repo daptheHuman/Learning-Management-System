@@ -10,5 +10,12 @@ package service
 
 // Name of the implemented services.
 const (
-// TODO add service names
+	// TODO add service names
+	User       = "user"
+	Admin       = "admin"
+	Course     = "course"
+	Student    = "student"
+	Curriculum = "curriculum"
+	Assessment = "assessment"
+	Material   = "material"
 )
